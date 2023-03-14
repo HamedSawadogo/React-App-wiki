@@ -1,0 +1,9 @@
+.article{
+   background: white;
+   padding: 10px;
+   border-radius: 5px;
+   width:90%;
+   height: auto;  
+   display: block;
+   margin: 10px auto; 
+}

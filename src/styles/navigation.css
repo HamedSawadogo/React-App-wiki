@@ -1,0 +1,19 @@
+.navigation{
+   height: 50px;
+   background:#4a7de1;
+   display: flex;
+   justify-content:center;
+   align-items: center;
+   list-style-type: none;
+   text-decoration: none;
+   align-items: center;
+}
+
+.active{
+   color: orange;
+}
+a{
+   text-decoration: none;
+   margin: 0px 10px;
+   color: white;
+}

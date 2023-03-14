@@ -1,0 +1,32 @@
+.form-container{
+   display: flex;
+   justify-content: center;
+   margin:0 auto;
+   padding: 10px;
+   border-radius: 20px;
+}
+label{
+   text-align: left;
+   display: block;
+   color: #000000;
+   font-size: .8rem;
+}
+h2{
+  font-size: 1.3rem;
+   color: rgb(0, 0, 0);
+   text-align: center;
+}
+input{
+   display: block;
+   margin: 10px 0;
+   padding: 6px;
+   border-radius: 15px;
+   width: 350px;
+   border: 1px solid whitesmoke;
+}
+input[type="submit"]{
+   width: 200px;
+   color: white;
+   background: #333;
+   cursor: pointer;
+}

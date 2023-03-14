@@ -1,0 +1,14 @@
+.notfund{
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   align-items: center;
+   list-style-type: none;
+   padding: 30px;
+   background: palegreen;
+   width: 400px;
+   height:400px;
+   margin: 0 auto;
+   border-radius: 50%;
+
+}
