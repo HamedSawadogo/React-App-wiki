@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-// import useContext from "react";
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 
