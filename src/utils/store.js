@@ -1,49 +1,39 @@
 import { createStore, combineReducers } from "redux";
 import produce from "immer";
 
-export const initialState = {
-  users: null,
-  posts: null,
-  darkMode: true,
-};
+//actions
+export const INIT_USERS = "initUsers";
+export const ADD_BLOG = "addBlog";
+export const DELETE_BLOG = "deleteBlog";
+export const UPDATE_BLOG = "updateblog";
 
-export const ADD_USER = (user) => ({
-  type: "ADD_USER",
-  payload: user,
+export const initUsers = (users) => ({
+  type: INIT_USERS,
+  payload: users,
 });
-export const INIT_USER = () => ({
-  type: "init",
-});
-
-export const UsersData = (user) => ({
-  type: "fetchData",
-  payload: { user },
+export const addBlog = (blog) => ({
+  type: ADD_BLOG,
+  payload: blog,
 });
 
-export const getPost = (posts) => ({
-  type: "post",
-  payload: { posts },
-});
-export const userReducer = (state = null, action) => {
-  if (action.type === "fetchData") {
-    return produce(state, (draft) => {});
+export const userReducer = (state = [], action) => {
+  if (action.type == INIT_USERS) {
+    state = action.payload;
+    return state;
   }
   return state;
 };
-export const PostReducers = (state = [], action) => {
-  produce(state, (draft) => {
-    switch (action.type) {
-      case "ADD_USER":
-        draft.users.add(action.payload);
-        return draft.users;
-      default:
-        return draft.users;
-    }
-  });
-};
 
+export const postReducer = (state = [], action) => {
+  if (action.type == ADD_BLOG) {
+    state = action.payload;
+    return state;
+  }
+  return state;
+};
 export const reducer = combineReducers({
   users: userReducer,
+  posts: postReducer,
 });
 
 export const store = createStore(

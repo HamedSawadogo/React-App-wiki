@@ -3,38 +3,30 @@ import React, { useEffect, useState } from "react";
 import Navigation from "../components/Navigation";
 import Article from "../components/Article";
 import styled from "styled-components";
-import { useStore } from "react-redux";
-import { getPost } from "../utils/store";
+import { useDispatch, useSelector } from "react-redux";
+import { addBlog } from "../utils/store";
 
 const BlogContainerWrapper = styled.div`
   display: block;
   margin: 0 auto;
 `;
 const Blog = () => {
-  const store = useStore();
-
   const [articles, setArticles] = useState([]);
-
-  async function fetchPosts(store) {
-    await axios.get("http://localhost:3004/articles").then((res) => {
-      setArticles(res.data);
-      store.dispatch(getPost(...res.data));
-    });
-  }
+  const dispatch = useDispatch();
+  const blogs = useSelector((state) => state.posts);
   useEffect(() => {
-    fetchPosts(store);
-  }, [store]);
-  store.getState().posts.map((post) => console.log(post.posts.author));
-
-  console.log(store.getState().posts.posts);
-
+    axios.get("http://localhost:3004/articles").then((res) => {
+      setArticles(res.data);
+      dispatch(addBlog(res.data));
+    });
+  }, []);
   return (
     <div>
       <Navigation />
       <h2>Nos meilleurs Articles a la Une des médias 🎆</h2>
       <BlogContainerWrapper>
-        {store.getState().posts.map((article) => (
-          <Article key={article.posts.id} article={article.posts} />
+        {blogs?.map((article) => (
+          <Article key={article.id} article={article} />
         ))}
       </BlogContainerWrapper>
     </div>
