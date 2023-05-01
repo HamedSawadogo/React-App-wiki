@@ -4,9 +4,6 @@ import axios from "axios";
 import User from "../components/User";
 import styled from "styled-components";
 import "../styles/home.css";
-// import { store } from "../utils/store";
-import { useStore } from "react-redux";
-import { UsersData, changeTheme } from "../utils/store";
 
 const UsersWrappers = styled.div`
   display: grid;
@@ -18,21 +15,15 @@ const UsersWrappers = styled.div`
 const Home = () => {
   const [users, setUsers] = useState([]);
   const [value, setValue] = useState("");
-  const [loading, setLoading] = useState(true);
 
-  const store = useStore();
-
-  const getUsers = async (store) => {
+  const getUsers = async () => {
     await axios.get("https://randomuser.me/api/?results=24").then((res) => {
       setUsers(res.data.results);
     });
   };
   useEffect(() => {
-    getUsers(store);
-  }, [store]);
-
-  store.dispatch(changeTheme());
-  console.log(store.getState());
+    getUsers();
+  }, []);
 
   return (
     <div>
@@ -49,9 +40,7 @@ const Home = () => {
       </form>
       {/* <h2>Découvrez nos profils de devellopeurs expérimentés a travers le monde</h2> */}
       <UsersWrappers>
-        {store.getState().map((user, key) => (
-          <User key={key} user={user} />
-        ))}
+        {users && users.map((user, key) => <User key={key} user={user} />)}
       </UsersWrappers>
     </div>
   );

@@ -6,9 +6,15 @@ export const initialState = {
   posts: null,
   darkMode: true,
 };
-export const changeTheme = () => ({
-  type: "toogleTheme",
+
+export const ADD_USER = (user) => ({
+  type: "ADD_USER",
+  payload: user,
 });
+export const INIT_USER = () => ({
+  type: "init",
+});
+
 export const UsersData = (user) => ({
   type: "fetchData",
   payload: { user },
@@ -20,29 +26,24 @@ export const getPost = (posts) => ({
 });
 export const userReducer = (state = null, action) => {
   if (action.type === "fetchData") {
-    return produce(state, (draft) => {
-      draft.push(action.payload);
-    });
+    return produce(state, (draft) => {});
   }
   return state;
 };
 export const PostReducers = (state = [], action) => {
-  if (action.type === "post") {
-    return [...state, action.payload];
-  }
-  return state;
-};
-export const ThemeReducer = (state = false, action) => {
-  if (action.type === "toogleTheme") {
-    return !state;
-  }
-  return state;
+  produce(state, (draft) => {
+    switch (action.type) {
+      case "ADD_USER":
+        draft.users.add(action.payload);
+        return draft.users;
+      default:
+        return draft.users;
+    }
+  });
 };
 
 export const reducer = combineReducers({
-  darkMode: ThemeReducer,
   users: userReducer,
-  posts: PostReducers,
 });
 
 export const store = createStore(

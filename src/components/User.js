@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
@@ -27,21 +26,15 @@ const User = ({ user }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <UserWrapper color={theme}>
-      <motion.div
-        animate={{ x: [30, 100, 1] }}
-        transition={{ ease: "easeOut", duration: 2 }}
-        className="user"
-      >
-        <Image src={user.picture.large} alt="" />
-        <h3>
-          {user.name.first}
-          {user.name.last}
-        </h3>
-        <p>habite à {user.location.city}</p>
-        <small> devellopeur dépuis {user.registered.age}ans</small>
-        <br />
-        <small>{user.registered.age > 10 ? "❤️" : "❤️❤️"}</small>
-      </motion.div>
+      <Image src={user.picture.large} alt="" />
+      <h3>
+        {user.name.first}
+        {user.name.last}
+      </h3>
+      <p>habite à {user.location.city}</p>
+      <small> devellopeur dépuis {user.registered.age}ans</small>
+      <br />
+      <small>{user.registered.age > 10 ? "❤️" : "❤️❤️"}</small>
     </UserWrapper>
   );
 };

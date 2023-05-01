@@ -7,7 +7,7 @@ import { ThemeContext } from "../context/ThemeContext";
 const ArticleWrapper = styled.div`
   background: ${({ color }) => color};
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 5px;ùù
   width: 90%;
   height: auto;
   display: block;
